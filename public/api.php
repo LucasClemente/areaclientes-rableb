@@ -5,8 +5,8 @@
  * Si no existen, se crean solos la primera vez que se llama a la API.
  */
 
-$uploadDir = __DIR__ . '/uploads';
-$dbPath    = __DIR__ . '/panel.sqlite';
+$uploadDir   = __DIR__ . '/uploads';
+$dbPath      = __DIR__ . '/panel.sqlite';
 
 if (!is_dir($uploadDir)) {
     @mkdir($uploadDir, 0755, true);

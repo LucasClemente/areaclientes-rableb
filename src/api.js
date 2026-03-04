@@ -1,6 +1,6 @@
 function getApiUrl() {
-  const base = window.location.origin + window.location.pathname.replace(/\/$/, '')
-  return base.replace(/\/+$/, '') + '/api.php'
+  // Siempre en la raíz del dominio (desde /login se llamaba /login/api.php y el servidor devolvía HTML)
+  return window.location.origin + '/api.php'
 }
 
 /* ─── mock data (dev-bypass) ─────────────────────────────── */
@@ -138,8 +138,22 @@ export async function api(action, body = {}, token = null) {
   }
   if (token) opts.headers.Authorization = `Bearer ${token}`
   const res = await fetch(url, opts)
-  const data = await res.json().catch(() => ({}))
-  if (!res.ok) throw new Error(data.error || 'Error de conexión')
+  const text = await res.text()
+  let data = {}
+  try {
+    data = JSON.parse(text)
+  } catch {
+    // Respuesta no JSON: el servidor devolvió HTML u otro contenido (error de PHP, redirección, etc.)
+    const snippet = text.slice(0, 120).replace(/\s+/g, ' ').trim()
+    const msg = res.ok
+      ? 'El servidor respondió pero no con JSON. Abrí la pestaña Red (Network), buscá la petición a api.php y en Respuesta (Response) vas a ver el error real.'
+      : `Error del servidor (${res.status}). Revisá la pestaña Red → api.php → Respuesta.${snippet ? ` Inicio: ${snippet}…` : ''}`
+    throw new Error(msg)
+  }
+  if (!res.ok) {
+    const msg = data.detail || data.error || `Error ${res.status}`
+    throw new Error(msg)
+  }
   return data
 }
 

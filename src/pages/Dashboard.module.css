@@ -1,45 +1,102 @@
 .dashboard { max-width: 100%; width: 100%; }
 
+.greeting {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0 0 2rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
 }
 
 .card {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
-  transition: border-color 0.15s, transform 0.1s;
+  padding: 1.75rem;
+  transition: all 0.2s ease;
   color: var(--text);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
 .card:hover {
-  border-color: rgba(59,130,246,0.35);
-  transform: translateY(-2px);
-  color: var(--text);
+  border-color: var(--border-focus);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1rem;
 }
 
 .cardIcon {
-  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-dim);
   color: var(--accent);
   flex-shrink: 0;
-  margin-top: 0.1rem;
 }
 
 .cardTitle {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
+  margin: 0;
+  font-size: 1.125rem;
   font-weight: 600;
 }
 
 .cardDesc {
-  margin: 0;
-  font-size: 0.875rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.cardAction {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.2s;
+}
+
+.card:hover .cardAction {
+  color: var(--accent-hover);
 }

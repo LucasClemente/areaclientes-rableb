@@ -3,6 +3,8 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import styles from './Login.module.css'
 
+const LOGO_URL = 'https://rableb.com/images/logo-principal-rableb-black_1765025803.webp'
+
 export default function Login() {
   const { user, loading, isLocalhost, loginWithBypass, loginDevBypass, requestCode, verifyCode } = useAuth()
   const navigate = useNavigate()
@@ -86,8 +88,9 @@ export default function Login() {
     <div className={styles.wrapper}>
       <div className={styles.card}>
         <div className={styles.header}>
+          <img src={LOGO_URL} alt="Rableb" className={styles.logo} />
           <h1 className={styles.title}>Área de clientes</h1>
-          <p className={styles.subtitle}>Rableb</p>
+          <p className={styles.subtitle}>Ingresá a tu panel</p>
         </div>
 
         {isLocalhost && (

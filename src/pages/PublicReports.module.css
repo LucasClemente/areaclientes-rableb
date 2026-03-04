@@ -64,17 +64,19 @@
 .reportRow {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1rem 1.1rem;
-  transition: border-color 0.15s, transform 0.1s;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .reportRow:hover {
-  border-color: rgba(59,130,246,0.3);
-  transform: translateY(-1px);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .reportIcon {
@@ -117,7 +119,7 @@
 .btnDownload {
   flex-shrink: 0;
   display: inline-block;
-  padding: 0.5rem 1.1rem;
+  padding: 0.65rem 1.25rem;
   font-size: 0.9375rem;
   font-weight: 600;
   color: #fff;
@@ -125,12 +127,14 @@
   border: none;
   border-radius: var(--radius-sm);
   white-space: nowrap;
-  transition: background 0.15s;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px var(--accent-dim);
 }
 
 .btnDownload:hover {
   background: var(--accent-hover);
-  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--accent-dim);
 }
 
 .unavailable {

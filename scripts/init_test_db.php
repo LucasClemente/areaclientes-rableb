@@ -1,11 +1,13 @@
 <?php
 /**
  * Crea/resetea la base de datos local de prueba.
- * Ejecutar: php public/init_test_db.php
+ * Ejecutar desde la raíz del proyecto: php scripts/init_test_db.php
+ * La BD y uploads se crean en public/ (no se suben al servidor con el build).
  */
 
-$uploadDir = __DIR__ . '/uploads';
-$dbPath   = __DIR__ . '/panel.sqlite';
+$publicDir = __DIR__ . '/../public';
+$uploadDir = $publicDir . '/uploads';
+$dbPath    = $publicDir . '/panel.sqlite';
 
 if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
 if (file_exists($dbPath)) unlink($dbPath);

@@ -12,7 +12,7 @@
     </FilesMatch>
 </IfModule>
 
-# Bloquear acceso directo a la base de datos (panel.sqlite)
+# Bloquear acceso directo a la base de datos
 <FilesMatch "\.(sqlite|db)$">
     Require all denied
 </FilesMatch>

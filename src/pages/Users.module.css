@@ -3,19 +3,36 @@
 .permissionsInfo {
   font-size: 0.9375rem;
   color: var(--text-muted);
-  margin: 0 0 1.25rem;
-  padding: 1rem 1.25rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  margin: 0 0 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
   line-height: 1.5;
 }
+
+.permissionsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.permissionsHeader svg {
+  flex-shrink: 0;
+}
+
 .permissionsInfo strong { color: var(--text); }
 .permissionsInfo ul {
-  margin: 0.5rem 0 0;
-  padding-left: 1.25rem;
+  margin: 0;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-.permissionsInfo li { margin-bottom: 0.35rem; }
+.permissionsInfo li { margin: 0; }
 
 .toolbar { margin-bottom: 1.25rem; }
 
@@ -115,13 +132,14 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .formTitle {
-  margin: 0 0 1rem;
-  font-size: 1rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
 }
 
@@ -172,6 +190,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
 }
 
 .table {
@@ -181,7 +200,7 @@
 }
 
 .table th, .table td {
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   text-align: left;
   border-bottom: 1px solid var(--border);
   vertical-align: middle;
@@ -192,14 +211,20 @@
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  background: rgba(0,0,0,0.15);
+  letter-spacing: 0.05em;
+  background: rgba(255,255,255,0.02);
 }
 
 .table tr:last-child td { border-bottom: none; }
 
 .dateCell { font-size: 0.875rem; color: var(--text-muted); white-space: nowrap; }
-.actionsCell { text-align: right; }
+.actionsCell { 
+  text-align: right; 
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  align-items: center;
+}
 
 /* ─── Badges ────────────────────────── */
 .badgeAdmin {
@@ -228,29 +253,137 @@
 
 /* ─── Buttons ───────────────────────── */
 .btnPrimary {
-  padding: 0.575rem 1.1rem;
+  padding: 0.65rem 1.25rem;
   font-size: 0.9375rem;
   font-weight: 600;
   color: #fff;
   background: var(--accent);
   border: none;
   border-radius: var(--radius-sm);
-  transition: background 0.15s;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px var(--accent-dim);
 }
-.btnPrimary:hover:not(:disabled) { background: var(--accent-hover); }
-.btnPrimary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btnPrimary:hover:not(:disabled) { 
+  background: var(--accent-hover); 
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--accent-dim);
+}
+.btnPrimary:active:not(:disabled) {
+  transform: translateY(0);
+}
+.btnPrimary:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .btnDanger {
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 0.875rem;
   font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-faint);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+.btnDanger:hover:not(:disabled) { 
+  color: var(--danger); 
+  background: var(--danger-dim);
+}
+.btnDanger:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btnDangerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  color: var(--text-faint);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+.btnDangerIcon:hover:not(:disabled) {
+  color: var(--danger);
+  background: var(--danger-dim);
+}
+.btnDangerIcon:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ─── Modal ───────────────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: var(--shadow);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.modalClose {
+  padding: 0.25rem 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.modalClose:hover { color: var(--text); }
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.modalFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,0.15);
+}
+
+.modal .btnGhost {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
   color: var(--text-muted);
   background: none;
   border: 1px solid var(--border);
-  border-radius: 4px;
-  transition: color 0.15s, border-color 0.15s;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
 }
-.btnDanger:hover:not(:disabled) { color: var(--danger); border-color: var(--danger-dim); }
-.btnDanger:disabled { opacity: 0.5; cursor: not-allowed; }
+.modal .btnGhost:hover { color: var(--text); border-color: var(--text-muted); }
+
+.modal .field {
+  margin-bottom: 1rem;
+}
 
 /* ─── States ────────────────────────── */
 .msg { color: var(--text-muted); }

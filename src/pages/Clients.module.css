@@ -20,13 +20,14 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .formTitle {
-  margin: 0 0 1rem;
-  font-size: 1rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
 }
 
@@ -63,94 +64,121 @@
 
 /* ─── Buttons ───────────────────────── */
 .btnPrimary {
-  padding: 0.6rem 1.1rem;
+  padding: 0.65rem 1.25rem;
   font-size: 0.9375rem;
   font-weight: 600;
   color: #fff;
   background: var(--accent);
   border: none;
   border-radius: var(--radius-sm);
-  transition: background 0.15s;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px var(--accent-dim);
 }
-.btnPrimary:hover:not(:disabled) { background: var(--accent-hover); }
-.btnPrimary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btnPrimary:hover:not(:disabled) { 
+  background: var(--accent-hover); 
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--accent-dim);
+}
+.btnPrimary:active:not(:disabled) {
+  transform: translateY(0);
+}
+.btnPrimary:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .btnCopy {
   padding: 0.4rem 0.75rem;
   font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--text-muted);
-  background: transparent;
+  background: rgba(255,255,255,0.02);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  transition: color 0.15s, border-color 0.15s;
+  transition: all 0.2s ease;
 }
-.btnCopy:hover { color: var(--accent); border-color: var(--accent); }
+.btnCopy:hover { 
+  color: var(--accent); 
+  border-color: var(--accent); 
+  background: var(--bg);
+}
 
 .btnView {
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.875rem;
   font-size: 0.8125rem;
+  font-weight: 600;
   color: var(--accent);
   background: var(--accent-dim);
   border: none;
   border-radius: var(--radius-sm);
-  transition: background 0.15s;
+  transition: all 0.2s ease;
 }
-.btnView:hover { background: rgba(59,130,246,0.2); color: var(--accent); }
+.btnView:hover { 
+  background: rgba(59,130,246,0.25); 
+  transform: translateY(-1px);
+}
 
 .btnEdit {
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.875rem;
   font-size: 0.8125rem;
-  color: var(--accent);
-  background: var(--accent-dim);
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
   border: none;
   border-radius: var(--radius-sm);
-  transition: background 0.15s;
+  transition: all 0.2s ease;
 }
-.btnEdit:hover { background: rgba(59,130,246,0.22); }
+.btnEdit:hover { 
+  background: rgba(255,255,255,0.1); 
+  transform: translateY(-1px);
+}
 
 .btnDanger {
-  padding: 0.4rem 0.6rem;
+  padding: 0.4rem 0.75rem;
   font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--text-faint);
   background: transparent;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  transition: color 0.15s, border-color 0.15s;
+  transition: all 0.2s ease;
   margin-left: auto;
 }
-.btnDanger:hover:not(:disabled) { color: var(--danger); border-color: var(--danger-dim); }
+.btnDanger:hover:not(:disabled) { 
+  color: var(--danger); 
+  background: var(--danger-dim);
+}
 
 /* ─── Grid ──────────────────────────── */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 0.875rem;
+  gap: 1rem;
 }
 
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  box-shadow: var(--shadow);
+  gap: 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
 }
 .card:hover {
-  border-color: rgba(59,130,246,0.35);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
 }
 
 .cardTop { flex: 1; }
 
 .clientName {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--text);
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
+  transition: color 0.2s;
 }
 .clientName:hover { color: var(--accent); }
 

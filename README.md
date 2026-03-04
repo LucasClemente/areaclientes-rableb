@@ -18,7 +18,7 @@ Para que el login funcione en local, la API PHP debe ejecutarse. Opci√≥n: despu√
 Para crear una BD con usuarios de ejemplo (y resetear la actual si existe):
 
 ```bash
-php public/init_test_db.php
+php scripts/init_test_db.php
 ```
 
 Se crea `public/panel.sqlite` (y `public/uploads/` si no existe) con:
