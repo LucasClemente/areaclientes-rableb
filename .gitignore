@@ -104,6 +104,12 @@ dist
 # vitepress cache directory
 **/.vitepress/cache
 
+# Panel SQLite y uploads (misma carpeta que api.php)
+public/panel.sqlite
+public/uploads/
+dist/panel.sqlite
+dist/uploads/
+
 # Docusaurus cache and generated files
 .docusaurus
 

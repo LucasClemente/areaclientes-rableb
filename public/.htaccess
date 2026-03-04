@@ -1,0 +1,33 @@
+# Área de clientes Rableb - Siteground
+
+# No cachear: siempre pedir versión nueva al servidor
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    </FilesMatch>
+</IfModule>
+
+# Bloquear acceso directo a la base de datos (panel.sqlite)
+<FilesMatch "\.(sqlite|db)$">
+    Require all denied
+</FilesMatch>
+
+# Permitir que api.php se ejecute como PHP
+<Files "api.php">
+    SetHandler application/x-httpd-php
+</Files>
+
+# SPA: redirigir todas las rutas al index.html (cuando esté en dist/)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/api\.php
+    RewriteRule ^ index.html [L]
+</IfModule>
